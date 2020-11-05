@@ -2,95 +2,171 @@ package structures;
 
 public class AVLTree<K extends Comparable<K>, V> {
 	private AVLNode<K,V> root;
-	/*
-	public boolean delete(K key){
-	    AVLNode<K,V> current = root;
-	    AVLNode<K,V> parent = root;
-	    boolean isLeftChild = false;
-	    while(current.getKey().compareTo(key)){
-	      parent = current;
-	      if(value < current.getValue()){
-	        // Move to the left if searched value is less
-	        current = current.getLeft();
-	        isLeftChild = true;
-	      }
-	      else{
-	        // Move to the right if searched value is >=
-	        current = current.right;
-	        isLeftChild = false;
-	      }
-	      if(current == null){
-	        return false;
-	      }
-	    }
-	    // if reached here means node to be deleted is found
-	    
-	    // Leaf node deletion case
-	    if(current.left == null && current.right == null){
-	      //System.out.println("Leaf node deletion case");
-	      // if root node is to be deleted
-	      if(current == root){
-	        root = null;
-	      }
-	      // left child
-	      else if(isLeftChild){
-	        parent.left = null;
-	      }
-	      // right child
-	      else{
-	        parent.right = null;
-	      }
-	    }
-	    // Node to be deleted has one child case
-	    // Node to be deleted has right child
-	    else if(current.left == null){
-	      //System.out.println("One right child deletion case");
-	      // if root node is to be deleted
-	      if(current == root){
-	        root = current.right;
-	      }
-	      // if deleted node is left child
-	      else if(isLeftChild){
-	        parent.left = current.right;
-	      }
-	      // if deleted node is right child
-	      else{
-	        parent.right = current.right;
-	      }
-	    }
-	    // Node to be deleted has left child
-	    else if(current.right == null){
-	      //System.out.println("One left child deletion case");
-	      if(current == root){
-	        root = current.left;
-	      }
-	      // if deleted node is left child
-	      else if(isLeftChild){
-	        parent.left = current.left;
-	      }
-	      // if deleted node is right child
-	      else{
-	        parent.right = current.left;
-	      }
-	    }
-	    // Node to be deleted has two children case
-	    else{
-	      //System.out.println("Two children deletion case");
-	      // find in-order successor of the node to be deleted
-	    	AVLNode successor = findSuccessor(current);
-	      if(current == root){
-	        root = successor;
-	      }
-	      // if deleted node is left child
-	      else if(isLeftChild){
-	        parent.left = successor;
-	      }
-	      // if deleted node is right child
-	      else{
-	        parent.right = successor;
-	      }
-	      successor.left = current.left;
-	    }
-	    return true;
-	  }*/
+	
+	public void insert(K key, V value) {
+		root = insert(root, key, value);
+	}
+	
+	public AVLNode<K,V> search(K key){
+		if(!root.getKey().equals(key)) {
+			return search(root, key);
+		}
+		return root;
+	}
+	
+	private AVLNode<K,V> search(AVLNode<K,V> current, K key){
+		if(current==null) {
+			return current;
+		}else {
+			if(current.getKey().compareTo(key)==0) {
+				return current;
+			}else if(current.getKey().compareTo(key)>0) {
+				return search(current.getLeft(), key);
+			}else {
+				return search(current.getRight(), key);
+			}
+		}
+	}
+	
+	private AVLNode<K,V> insert(AVLNode<K,V> current, K key, V value){
+		if(current == null) {
+			current = new AVLNode<K,V>(key, value);
+			return current;
+		}else {
+			if(current.getKey().compareTo(key)>0) {
+				current.setLeft(insert(current.getLeft(), key, value));
+			}else {
+				current.setRight(insert(current.getRight(), key, value));
+			}
+			current.setHeight(Math.max(height(current.getLeft()), height(current.getRight()))+1);
+			int balanceFactor = heightDiff(current);
+            if(balanceFactor < -1) {
+                if(heightDiff(current.getRight()) > 0) {
+                    current.setRight(rightRotate(current.getRight()));
+                    return leftRotate(current);
+                }else {
+                    return leftRotate(current);
+                }
+            }else if(balanceFactor > 1) {
+                if (heightDiff(current.getLeft()) < 0) {
+                	current.setLeft(leftRotate(current.getLeft()));
+                    return rightRotate(current);
+                } else {
+                    return rightRotate(current);
+                }
+            }else;
+		}
+		return current;
+	}
+	
+	/**
+	 * Deletes a node from the AVL tree
+	 * @param K key
+	 */
+	public void delete(K key) {
+		root = delete(root, key);
+	}
+	private AVLNode<K,V> delete(AVLNode<K,V> current, K key){
+		if(current==null) {
+			return current;
+		}
+		if(current.getKey().compareTo(key)>0) {
+			current.setLeft(delete(current.getLeft(), key));
+		}else if(current.getKey().compareTo(key)<0) {
+			current.setRight(delete(current.getRight(), key));
+		}else {
+			if((current.getLeft()==null) || (current.getRight()==null)) {
+				AVLNode<K,V> temp = null;
+				if(temp==current.getLeft()) {
+					temp = current.getRight();
+				}else {
+					temp = current.getLeft();
+				}
+				if(temp==null) {
+					temp = current;
+					current = null;
+				}else {
+					current = temp;
+				}
+			}else {
+				AVLNode<K,V> temp = minKeyNode(current.getRight());
+				current.setKey(temp.getKey());
+				current.setValue(temp.getValue());
+				current.setRight(delete(current.getRight(), temp.getKey()));
+			}
+		}
+		if(current==null) {
+			return current;
+		}
+		current.setHeight(Math.max(height(current.getLeft()), height(current.getRight()))+1);
+		int balFacCurrent = heightDiff(current);
+		int balFacLeft = heightDiff(current.getLeft());
+		int balFacRight = heightDiff(current.getRight());
+		if(balFacCurrent>1 && balFacLeft>=0) {
+			return rightRotate(current);
+		}
+		if(balFacCurrent>1 && balFacLeft<0) {
+			current.setLeft(leftRotate(current.getLeft()));
+			return rightRotate(current);
+		}
+		if(balFacCurrent<-1 && balFacRight<=0) {
+			return leftRotate(current);
+		}
+		if(balFacCurrent<-1 && balFacRight>0) {
+			current.setRight(rightRotate(current.getRight()));
+			return leftRotate(current);
+		}
+		return current;
+	}
+	
+	private AVLNode<K,V> leftRotate(AVLNode<K,V> current) {
+        AVLNode<K,V> r = current.getRight();
+        current.setRight(r.getLeft());
+        r.setLeft(current);
+        current.setHeight(Math.max(height(current.getLeft()), height(current.getRight()))+1);
+        r.setHeight(Math.max(height(r.getLeft()), height(r.getRight()))+1);
+        return r;
+    }
+
+    private AVLNode<K,V> rightRotate(AVLNode<K,V> current) {
+        AVLNode<K,V> r = current.getLeft();
+        current.setLeft(r.getRight());
+        r.setRight(current);
+        current.setHeight(Math.max(height(current.getLeft()), height(current.getRight()))+1);
+        r.setHeight(Math.max(height(r.getLeft()), height(r.getRight())) + 1);
+        return r;
+    }
+    
+    private AVLNode<K,V> minKeyNode(AVLNode<K,V> current){
+    	while(current.getLeft()!=null) {
+    		current = current.getLeft();
+    	}
+    	return current;
+    }
+    
+    private int heightDiff(AVLNode<K,V> current) {
+        if (current == null) {
+            return 0;
+        }
+        return height(current.getLeft()) - height(current.getRight());
+    }
+
+    private int height(AVLNode<K,V> current) {
+        if (current == null) {
+            return 0;
+        }
+        return current.getHeight();
+    }
+    
+    public AVLNode<K, V> getRoot(){
+    	return root;
+    }
+    
+    public void preOrder(AVLNode<K,V> node) { 
+        if (node != null) { 
+            System.out.print(node.getKey() + " " + node.getValue()+ " "); 
+            preOrder(node.getLeft()); 
+            preOrder(node.getRight()); 
+        } 
+    }
 }

@@ -2,19 +2,19 @@ package structures;
 
 public class AVLNode<K extends Comparable<K>, V> {
 	private int balanceFactor;
+	private int height;
 	private K key;
 	private V value;
 	private AVLNode<K,V> left;
 	private AVLNode<K,V> right;
-	private AVLNode<K,V> parent;
 	
 	public AVLNode(K key, V value) {
 		this.balanceFactor = 0;
+		this.height = 1;
 		this.key = key;
 		this.value = value;
 		this.left = null;
 		this.right = null;
-		this.parent = null;
 	}
 	
 	public void addNode(AVLNode<K, V> node) throws Exception {
@@ -111,76 +111,79 @@ public class AVLNode<K extends Comparable<K>, V> {
 	public void setBalanceFactor(int balanceFactor) {
 		this.balanceFactor = balanceFactor;
 	}
+	
+	/**
+	 * @return the height of the node
+	 */
+	public int getHeight() {
+		return height;
+	}
 
 	/**
-	 * @return the key
+	 * @param height: the height to set
+	 */
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the key of the node
 	 */
 	public K getKey() {
 		return key;
 	}
 
 	/**
-	 * @param key the key to set
+	 * @param key: the key to set
 	 */
 	public void setKey(K key) {
 		this.key = key;
 	}
 
 	/**
-	 * @return the value
+	 * @return the value of the node
 	 */
 	public V getValue() {
 		return value;
 	}
 
 	/**
-	 * @param value the value to set
+	 * @param value: the value to set
 	 */
 	public void setValue(V value) {
 		this.value = value;
 	}
 
 	/**
-	 * @return the left
+	 * @return the left child node
 	 */
 	public AVLNode<K, V> getLeft() {
 		return left;
 	}
 
 	/**
-	 * @param left the left to set
+	 * @param left: the left child node to set
 	 */
 	public void setLeft(AVLNode<K, V> left) {
 		this.left = left;
 	}
 
 	/**
-	 * @return the right
+	 * @return the right child node
 	 */
 	public AVLNode<K, V> getRight() {
 		return right;
 	}
 
 	/**
-	 * @param right the right to set
+	 * @param right: the right child node to set
 	 */
 	public void setRight(AVLNode<K, V> right) {
 		this.right = right;
 	}
-
-	/**
-	 * @return the parent
-	 */
-	public AVLNode<K, V> getParent() {
-		return parent;
-	}
-
-	/**
-	 * @param parent the parent to set
-	 */
-	public void setParent(AVLNode<K, V> parent) {
-		this.parent = parent;
-	}
 	
-	
+	@Override
+	public String toString() {
+		return "Node ["+key+", "+value+"]";
+	}
 }
