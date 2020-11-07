@@ -2,11 +2,12 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.*;
 import java.util.Date;
 import javax.imageio.ImageIO;
 
-public class Person {
+public class Person implements Serializable{
 	private String code;
 	private String FirstName;
 	private String LastName;

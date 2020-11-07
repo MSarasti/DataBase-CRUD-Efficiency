@@ -1,19 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab fx:id="startTab" text="Start">
          <content>
-            <Pane fx:id="startPane" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="startPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="genDataButton" layoutX="268.0" layoutY="173.0" mnemonicParsing="false" onAction="#genData" text="Generate" />
+                  <Label layoutX="195.0" layoutY="92.0" text="Enter the amount of people to generate" />
+                  <ProgressBar fx:id="progBarGen" layoutX="200.0" layoutY="237.0" prefWidth="200.0" progress="0.0" />
+                  <TextField fx:id="genAmountTxtField" alignment="CENTER" layoutX="226.0" layoutY="135.0" text="1000000000" />
+                  <Button fx:id="saveDataButton" layoutX="253.0" layoutY="309.0" mnemonicParsing="false" onAction="#saveData" text="Save Database" />
+               </children></Pane>
          </content>
     </Tab>
     <Tab fx:id="createTab" text="Create">
          <content>
-            <Pane fx:id="createPane" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="createPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="createPersonButton" layoutX="274.0" layoutY="291.0" mnemonicParsing="false" onAction="#createPerson" text="Button" />
+                  <Label alignment="CENTER" layoutX="182.0" layoutY="38.0" nodeOrientation="RIGHT_TO_LEFT" text="First Name">
+                     <graphic>
+                        <TextField fx:id="FNTxtField" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="182.0" layoutY="71.0" nodeOrientation="RIGHT_TO_LEFT" text="Last Name">
+                     <graphic>
+                        <TextField fx:id="LNTxtField" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="199.0" layoutY="105.0" nodeOrientation="RIGHT_TO_LEFT" text="Gender">
+                     <graphic>
+                        <TextField fx:id="GenderTxtField" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="197.0" layoutY="141.0" nodeOrientation="RIGHT_TO_LEFT" text="Birthday">
+                     <graphic>
+                        <TextField fx:id="BirthTxtField" promptText="DD/MM/YYYY" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="182.0" layoutY="173.0" nodeOrientation="RIGHT_TO_LEFT" text="Height (m)">
+                     <graphic>
+                        <TextField fx:id="HeightTxtField" />
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="182.0" layoutY="211.0" nodeOrientation="RIGHT_TO_LEFT" text="Nationality">
+                     <graphic>
+                        <TextField fx:id="NationTxtField" />
+                     </graphic>
+                  </Label>
+               </children></Pane>
          </content>
     </Tab>
       <Tab fx:id="searchTab" text="Search">
@@ -24,6 +68,11 @@
       <Tab fx:id="modifyTab" text="Modify">
          <content>
             <Pane fx:id="modifyPane" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab text="Delete">
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
          </content>
       </Tab>
   </tabs>
