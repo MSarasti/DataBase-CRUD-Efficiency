@@ -46,7 +46,8 @@
             <TextField fx:id="natSearTxtField" editable="false" />
          </graphic>
       </Label>
-      <Button layoutX="437.0" layoutY="341.0" mnemonicParsing="false" text="Update" visible="false" />
-      <Button layoutX="522.0" layoutY="341.0" mnemonicParsing="false" text="Delete" visible="false" />
+      <Button fx:id="updateButton" layoutX="437.0" layoutY="341.0" mnemonicParsing="false" text="Update" visible="false" />
+      <Button fx:id="deleteButton" layoutX="522.0" layoutY="341.0" mnemonicParsing="false" text="Delete" visible="false" />
+      <Button layoutX="48.0" layoutY="354.0" mnemonicParsing="false" onAction="#loadMainMenu" text="Back" />
    </children>
 </Pane>

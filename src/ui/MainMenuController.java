@@ -9,11 +9,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import customExceptions.IncompatibleFieldsException;
 import customExceptions.NotCompleteMandatoryFieldsException;
@@ -32,11 +35,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -48,7 +53,10 @@ import model.*;
 public class MainMenuController {
 	
 	private DataBase base;
-
+	
+	@FXML
+	private Pane mainPane;
+	
 	@FXML
     private Tab startTab;
 
@@ -137,8 +145,44 @@ public class MainMenuController {
     private ListView<?> delListView;
     
     @FXML
-	public void start(ActionEvent event) {
-    	
+    private ImageView picSearImgView;
+
+    @FXML
+    private TextField fNameSearTxtField;
+
+    @FXML
+    private TextField lNameSearTxtField;
+
+    @FXML
+    private TextField codeSearTxtField;
+
+    @FXML
+    private TextField genSearTxtField;
+
+    @FXML
+    private DatePicker birthSearTxtField;
+
+    @FXML
+    private TextField heigSearTxtField;
+
+    @FXML
+    private TextField natSearTxtField;
+    
+    @FXML
+    private Button updateButton;
+    
+    @FXML
+    private Button deleteButton;
+    
+    @FXML
+	public void initialize() throws Exception {
+		base = new DataBase();
+		//loadData();
+	}
+    
+    @FXML
+	public void start(ActionEvent event) throws Exception {
+    	loadMainMenu(null);
     }
     
     @FXML
@@ -166,10 +210,33 @@ public class MainMenuController {
 			showNotCompleteMandatoryFieldsWarning();
 		}
     }
-
+    
+    @FXML
+    void foundPerson(ActionEvent event) throws Exception{
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("foundPerson.fxml"));
+		
+		fxmlLoader.setController(this);    	
+		Pane found = fxmlLoader.load();
+    	picSearImgView.setImage(new Image("https://thispersondoesnotexist.com/"));
+		
+		mainPane.getChildren().clear();
+    	mainPane.getChildren().add(found);
+    }
+    
     @FXML
     void genData(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void loadMainMenu(ActionEvent event) throws Exception{
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
+		
+		fxmlLoader.setController(this);    	
+		TabPane mainMenu = fxmlLoader.load();
+    	
+		mainPane.getChildren().clear();
+    	mainPane.getChildren().add(mainMenu);
     }
     
     public void loadData() {
