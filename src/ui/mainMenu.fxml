@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -16,9 +19,10 @@
                <children>
                   <Button fx:id="genDataButton" layoutX="268.0" layoutY="173.0" mnemonicParsing="false" onAction="#genData" text="Generate" />
                   <Label layoutX="195.0" layoutY="92.0" text="Enter the amount of people to generate" />
-                  <ProgressBar fx:id="progBarGen" layoutX="200.0" layoutY="237.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="progBarGen" layoutX="200.0" layoutY="237.0" prefWidth="200.0" progress="0.0" visible="false" />
                   <TextField fx:id="genAmountTxtField" alignment="CENTER" layoutX="226.0" layoutY="135.0" text="1000000000" />
                   <Button fx:id="saveDataButton" layoutX="253.0" layoutY="309.0" mnemonicParsing="false" onAction="#saveData" text="Save Database" />
+                  <Label fx:id="timeTakenLab" alignment="CENTER" layoutX="256.0" layoutY="220.0" prefHeight="17.0" prefWidth="88.0" textAlignment="CENTER" />
                </children></Pane>
          </content>
     </Tab>
@@ -26,7 +30,7 @@
          <content>
             <Pane fx:id="createPane" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="createPersonButton" layoutX="274.0" layoutY="291.0" mnemonicParsing="false" onAction="#createPerson" text="Button" />
+                  <Button fx:id="createPersonButton" layoutX="274.0" layoutY="291.0" mnemonicParsing="false" onAction="#createPerson" text="Create" />
                   <Label alignment="CENTER" layoutX="182.0" layoutY="38.0" nodeOrientation="RIGHT_TO_LEFT" text="First Name">
                      <graphic>
                         <TextField fx:id="FNTxtField" />
@@ -42,9 +46,9 @@
                         <TextField fx:id="GenderTxtField" />
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" layoutX="197.0" layoutY="141.0" nodeOrientation="RIGHT_TO_LEFT" text="Birthday">
+                  <Label alignment="CENTER" layoutX="169.0" layoutY="140.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="225.0" text="Birthday">
                      <graphic>
-                        <TextField fx:id="BirthTxtField" promptText="DD/MM/YYYY" />
+                        <DatePicker fx:id="birthDtPick" nodeOrientation="LEFT_TO_RIGHT" />
                      </graphic>
                   </Label>
                   <Label alignment="CENTER" layoutX="182.0" layoutY="173.0" nodeOrientation="RIGHT_TO_LEFT" text="Height (m)">
@@ -62,17 +66,33 @@
     </Tab>
       <Tab fx:id="searchTab" text="Search">
          <content>
-            <Pane fx:id="searchPane" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="searchPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="searTxtField" layoutX="36.0" layoutY="26.0" prefHeight="25.0" prefWidth="360.0" />
+                  <ChoiceBox fx:id="searChBox" layoutX="413.0" layoutY="26.0" prefWidth="150.0" />
+                  <ListView fx:id="searListView" layoutX="36.0" layoutY="69.0" prefHeight="280.0" prefWidth="360.0" />
+               </children></Pane>
          </content>
       </Tab>
       <Tab fx:id="modifyTab" text="Modify">
          <content>
-            <Pane fx:id="modifyPane" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="modifyPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="modTxtField" layoutX="36.0" layoutY="32.0" prefHeight="25.0" prefWidth="360.0" />
+                  <ChoiceBox fx:id="modChBox" layoutX="423.0" layoutY="32.0" prefWidth="150.0" />
+                  <ListView fx:id="modListView" layoutX="36.0" layoutY="68.0" prefHeight="280.0" prefWidth="360.0" />
+               </children></Pane>
          </content>
       </Tab>
       <Tab text="Delete">
          <content>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="delTxtField" layoutX="32.0" layoutY="25.0" prefHeight="25.0" prefWidth="360.0" />
+                  <ChoiceBox fx:id="delChBox" layoutX="415.0" layoutY="25.0" prefWidth="150.0" />
+                  <ListView fx:id="delListView" layoutX="32.0" layoutY="67.0" prefHeight="280.0" prefWidth="360.0" />
+               </children>
+            </Pane>
          </content>
       </Tab>
   </tabs>

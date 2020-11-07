@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="picSearImgView" fitHeight="247.0" fitWidth="212.0" layoutX="31.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" layoutX="315.0" layoutY="58.0" nodeOrientation="RIGHT_TO_LEFT" text="First Name">
+         <graphic>
+            <TextField fx:id="fNameSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Label layoutX="316.0" layoutY="98.0" nodeOrientation="RIGHT_TO_LEFT" text="Last Name">
+         <graphic>
+            <TextField fx:id="lNameSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Label layoutX="347.0" layoutY="134.0" nodeOrientation="RIGHT_TO_LEFT" text="Code">
+         <graphic>
+            <TextField fx:id="codeSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Label layoutX="328.0" layoutY="166.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="199.0" text="Gender">
+         <graphic>
+            <TextField fx:id="genSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Label layoutX="308.0" layoutY="200.0" nodeOrientation="RIGHT_TO_LEFT" text="Birthday">
+         <graphic>
+            <DatePicker fx:id="birthSearTxtField" editable="false" nodeOrientation="LEFT_TO_RIGHT" />
+         </graphic>
+      </Label>
+      <Label layoutX="334.0" layoutY="238.0" nodeOrientation="RIGHT_TO_LEFT" text="Height">
+         <graphic>
+            <TextField fx:id="heigSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Label layoutX="315.0" layoutY="274.0" nodeOrientation="RIGHT_TO_LEFT" text="Nationality">
+         <graphic>
+            <TextField fx:id="natSearTxtField" editable="false" />
+         </graphic>
+      </Label>
+      <Button layoutX="437.0" layoutY="341.0" mnemonicParsing="false" text="Update" visible="false" />
+      <Button layoutX="522.0" layoutY="341.0" mnemonicParsing="false" text="Delete" visible="false" />
+   </children>
+</Pane>

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.*;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.imageio.ImageIO;
 
 public class Person implements Serializable{
@@ -12,12 +12,12 @@ public class Person implements Serializable{
 	private String FirstName;
 	private String LastName;
 	private String gender;
-	private Date birthDate;
-	private int height;
+	private LocalDate birthDate;
+	private double height;
 	private String nationality;
 	private String photo;
 	
-	public Person(String firstName, String lastName, String gender, Date birthDate, int height, String nationality) {
+	public Person(String firstName, String lastName, String gender, LocalDate birthDate, double height, String nationality) {
 		FirstName = firstName;
 		LastName = lastName;
 		this.gender = gender;
@@ -86,28 +86,28 @@ public class Person implements Serializable{
 	/**
 	 * @return the birthDate
 	 */
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
 	/**
 	 * @param birthDate the birthDate to set
 	 */
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
 	/**
 	 * @return the height
 	 */
-	public int getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
 	/**
 	 * @param height the height to set
 	 */
-	public void setHeight(int height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 

@@ -1,29 +1,28 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
-
+import java.time.LocalDate;
 import structures.AVLTree;
 
 public class DataBase implements Serializable{
-	private int code;
+	private int Code;
 	private AVLTree<String, Person> FNameAVLTree;
 	private AVLTree<String, Person> LNameAVLTree;
 	private AVLTree<String, Person> FullNameAVLTree;
 	private AVLTree<String, Person> CodeAVLTree;
 	
-	public void DataBase() {
-		code = 1;
+	public DataBase() {
+		Code = 1;
 	}
 	
-	public void addPerson(String firstName, String lastName, String gender, Date birthDate, int height, String nationality) {
+	public void addPerson(String firstName, String lastName, String gender, LocalDate birthDate, double height, String nationality) {
 		Person temp = new Person(firstName, lastName, gender, birthDate, height, nationality);
-		temp.setCode(""+code);
+		temp.setCode(""+Code);
 		FNameAVLTree.insert(firstName, temp);
 		LNameAVLTree.insert(lastName, temp);
 		FullNameAVLTree.insert(firstName+" "+lastName, temp);
 		CodeAVLTree.insert(temp.getCode(), temp);
-		code++;
+		Code++;
 	}
 	
 	public void deletePersonFName(String firstName) {
