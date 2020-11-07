@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.Pane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+  <tabs>
+    <Tab fx:id="startTab" text="Start">
+         <content>
+            <Pane fx:id="startPane" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+    </Tab>
+    <Tab fx:id="createTab" text="Create">
+         <content>
+            <Pane fx:id="createPane" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+    </Tab>
+      <Tab fx:id="searchTab" text="Search">
+         <content>
+            <Pane fx:id="searchPane" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab fx:id="modifyTab" text="Modify">
+         <content>
+            <Pane fx:id="modifyPane" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

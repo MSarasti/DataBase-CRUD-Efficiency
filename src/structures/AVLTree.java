@@ -1,31 +1,28 @@
 package structures;
 
-public class AVLTree<K extends Comparable<K>, V> {
+/**
+ * AVL Tree data structure
+ * @author Miguel Sarasti
+ * @param <K>
+ * @param <V>
+ */
+public class AVLTree<K extends Comparable<K>, V> implements AVLInterface<K,V>{
 	private AVLNode<K,V> root;
 	
+	/**
+	 * AVLTree constructor
+	 */
+	public AVLTree() {
+	}
+	
+	/**
+	 * Adds a new node to the AVL tree
+	 * <b>post:</b> A new node has been added<br>
+	 * @param K Key
+	 * @param V Value
+	 */
 	public void insert(K key, V value) {
 		root = insert(root, key, value);
-	}
-	
-	public AVLNode<K,V> search(K key){
-		if(!root.getKey().equals(key)) {
-			return search(root, key);
-		}
-		return root;
-	}
-	
-	private AVLNode<K,V> search(AVLNode<K,V> current, K key){
-		if(current==null) {
-			return current;
-		}else {
-			if(current.getKey().compareTo(key)==0) {
-				return current;
-			}else if(current.getKey().compareTo(key)>0) {
-				return search(current.getLeft(), key);
-			}else {
-				return search(current.getRight(), key);
-			}
-		}
 	}
 	
 	private AVLNode<K,V> insert(AVLNode<K,V> current, K key, V value){
@@ -60,12 +57,40 @@ public class AVLTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
+	 * Searches for a node in the AVL tree
+	 * <b>post:</b> The searched node found or null if it wasn't fount.
+	 * @param K key
+	 * @return AVLNode
+	 */
+	public AVLNode<K,V> search(K key){
+		if(!root.getKey().equals(key)) {
+			return search(root, key);
+		}
+		return root;
+	}
+	
+	private AVLNode<K,V> search(AVLNode<K,V> current, K key){
+		if(current==null) {
+			return current;
+		}else {
+			if(current.getKey().compareTo(key)==0) {
+				return current;
+			}else if(current.getKey().compareTo(key)>0) {
+				return search(current.getLeft(), key);
+			}else {
+				return search(current.getRight(), key);
+			}
+		}
+	}
+	
+	/**
 	 * Deletes a node from the AVL tree
 	 * @param K key
 	 */
 	public void delete(K key) {
 		root = delete(root, key);
 	}
+	
 	private AVLNode<K,V> delete(AVLNode<K,V> current, K key){
 		if(current==null) {
 			return current;
@@ -119,6 +144,11 @@ public class AVLTree<K extends Comparable<K>, V> {
 		return current;
 	}
 	
+	/**
+	 * Performs a left rotation to a current AVLNode
+	 * @param current
+	 * @return AVLNode r: rotated node.
+	 */
 	private AVLNode<K,V> leftRotate(AVLNode<K,V> current) {
         AVLNode<K,V> r = current.getRight();
         current.setRight(r.getLeft());
@@ -127,7 +157,12 @@ public class AVLTree<K extends Comparable<K>, V> {
         r.setHeight(Math.max(height(r.getLeft()), height(r.getRight()))+1);
         return r;
     }
-
+	
+	/**
+	 * Performs a right rotation to a current AVL Node
+	 * @param current
+	 * @return AVLNode r: rotated node.
+	 */
     private AVLNode<K,V> rightRotate(AVLNode<K,V> current) {
         AVLNode<K,V> r = current.getLeft();
         current.setLeft(r.getRight());
@@ -137,6 +172,11 @@ public class AVLTree<K extends Comparable<K>, V> {
         return r;
     }
     
+    /**
+     * Get the minimum key value of a subtree
+     * @param current
+     * @return AVLNode with the minimum key value found
+     */
     private AVLNode<K,V> minKeyNode(AVLNode<K,V> current){
     	while(current.getLeft()!=null) {
     		current = current.getLeft();
@@ -144,13 +184,23 @@ public class AVLTree<K extends Comparable<K>, V> {
     	return current;
     }
     
+    /**
+     * Calculates the height difference (Balance factor) of a subtree
+     * @param current
+     * @return the balance factor of the subtree
+     */
     private int heightDiff(AVLNode<K,V> current) {
         if (current == null) {
             return 0;
         }
         return height(current.getLeft()) - height(current.getRight());
     }
-
+    
+    /**
+     * Gets the height of a subtree
+     * @param current
+     * @return the height of the subtree
+     */
     private int height(AVLNode<K,V> current) {
         if (current == null) {
             return 0;
@@ -158,10 +208,17 @@ public class AVLTree<K extends Comparable<K>, V> {
         return current.getHeight();
     }
     
+    /**
+     * @return the root of the AVLTree
+     */
     public AVLNode<K, V> getRoot(){
     	return root;
     }
     
+    /**
+     * Prints the AVL tree in preOrder
+     * @param node
+     */
     public void preOrder(AVLNode<K,V> node) { 
         if (node != null) { 
             System.out.print(node.getKey() + " " + node.getValue()+ " "); 

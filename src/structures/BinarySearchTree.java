@@ -4,12 +4,11 @@ import java.util.Collection;
 
 /**
  * Binary Search Tree data structure
- * @author usuario
  * @param <K> Key
  * @param <V> Value
  */
 
-public class BinarySearchTree<K extends Comparable<K>, V> implements BinarySearchTreeOperations<K, V>{
+public class BinarySearchTree<K extends Comparable<K>, V> implements BinarySearchTreeInterface<K, V>{
 	
 	private Node<K, V> root;
 	private int weight;

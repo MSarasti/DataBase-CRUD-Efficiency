@@ -4,8 +4,6 @@ import java.util.Collection;
 
 /**
  * Binary Search Tree node
- * @author usuario
- *
  * @param <K>
  * @param <V>
  */

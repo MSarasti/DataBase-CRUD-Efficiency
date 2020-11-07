@@ -8,27 +8,23 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 
 /**
- * @version September 21th 2020
- * @author 
- *
+ * @version November 6th 2020
  */
 public class Main extends Application {
 
-	private PrincipalWindowController principal;
+	private MainMenuController mainMenu;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PrincipalWindow.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenu.fxml"));
 	    	Parent root = fxmlLoader.load();
-	    	principal = fxmlLoader.getController();
+	    	mainMenu = fxmlLoader.getController();
 			Scene scene= new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("bank-flat.png")));
-			primaryStage.setTitle("Bank S.A");
+			primaryStage.setTitle("Database");
 			primaryStage.setResizable(false);
 			primaryStage.show();
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -37,7 +33,7 @@ public class Main extends Application {
 				public void handle(WindowEvent arg0) {
 					// TODO Auto-generated method stub
 				  	try {
-						principal.saveData();
+						mainMenu.saveData();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

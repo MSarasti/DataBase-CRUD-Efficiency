@@ -4,18 +4,17 @@ import java.util.Collection;
 
 /**
  * Basic operations and algorithms used by a binary search tree
- * @author usuario
  * @param <K> Key
  * @param <V> Value
  */
 
-public interface BinarySearchTreeOperations<K extends Comparable<K>, V> {
+public interface BinarySearchTreeInterface<K extends Comparable<K>, V> {
 	
 	/**
 	 * Adds a new node to the binary search tree
 	 * <b>post:</b> A new node has been added<br>
-	 * @param k Key
-	 * @param v Value
+	 * @param K Key
+	 * @param V Value
 	 * @throws Exception
 	 */
 	
@@ -23,15 +22,15 @@ public interface BinarySearchTreeOperations<K extends Comparable<K>, V> {
 	
 	/**
 	 * Updates the Value v of the node with Key k
-	 * @param k Key
-	 * @param v Value
+	 * @param K key
+	 * @param V value
 	 */
 	
 	public void updateNode(K k, V v);
 	
 	/**
 	 * Searches a node in the binary search tree
-	 * @param k Key
+	 * @param K key
 	 * @return Node
 	 */
 	
@@ -39,7 +38,7 @@ public interface BinarySearchTreeOperations<K extends Comparable<K>, V> {
 	
 	/**
 	 * Deletes a node from the binary search tree
-	 * @param k Key
+	 * @param K key
 	 */
 	
 	public void deleteNode(K k);

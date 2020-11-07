@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.*;
 
-public class PrincipalWindowController {
+public class MainMenuController {
 	
 	private DataBase base;
 	private ClientController clientController;
@@ -34,22 +35,28 @@ public class PrincipalWindowController {
 	private QueueController queueController;
 
 	@FXML
-	private ToggleGroup options;
+    private Tab startTab;
 
-	@FXML
-	private RadioButton queue;
+    @FXML
+    private Pane startPane;
 
-	@FXML
-	private RadioButton information;
-	
-	@FXML
-	private Button btDatabase;
-	
-	@FXML
-	private Button btCanceledClients;
-	
-	@FXML
-	private Button btStart;
+    @FXML
+    private Tab createTab;
+
+    @FXML
+    private Pane createPane;
+
+    @FXML
+    private Tab searchTab;
+
+    @FXML
+    private Pane searchPane;
+
+    @FXML
+    private Tab modifyTab;
+
+    @FXML
+    private Pane modifyPane;
 	
 	@FXML
 	public void initialize() {
