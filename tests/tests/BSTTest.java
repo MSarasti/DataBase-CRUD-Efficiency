@@ -9,11 +9,11 @@ class BSTTest {
 	BinarySearchTree<Integer,String> b;
 	/** STAGES **/	
 	public void setUpStage1() {
-		b= new BinarySearchTree<Integer, String>();
+		b = new BinarySearchTree<Integer, String>();
 	}
 	
 	public void setUpStage2() throws Exception {
-		b= new BinarySearchTree<Integer, String>();
+		b = new BinarySearchTree<Integer, String>();
 		b.addNode(5, "Michael");
 		b.addNode(10, "Leonard");
 		b.addNode(7, "Raphael");
@@ -22,8 +22,8 @@ class BSTTest {
 	}
 	
 	/** TESTS 
-	 * @throws Exception */
-	
+	 * @throws Exception 
+	 */
 	@Test
 	void testAdd() throws Exception {
 		setUpStage1();
@@ -56,11 +56,8 @@ class BSTTest {
 	@Test
 	void testDelete() throws Exception {
 		setUpStage2();
-		try{
-			b.deleteNode(2);
-		}catch(Exception e) {
-			assertTrue(true);
-		}
+		b.deleteNode(2);
+		assertNull(b.searchNode(2));
 	}
 	
 	@Test
