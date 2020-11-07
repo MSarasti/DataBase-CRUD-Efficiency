@@ -212,12 +212,14 @@ public class MainMenuController {
     }
     
     @FXML
-    void foundPerson(ActionEvent event) throws Exception{
+    void loadFoundPerson(ActionEvent event) throws Exception{
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("foundPerson.fxml"));
+    	
+		fxmlLoader.setController(this);
 		
-		fxmlLoader.setController(this);    	
 		Pane found = fxmlLoader.load();
-    	picSearImgView.setImage(new Image("https://thispersondoesnotexist.com/"));
+		ImageView temp = new ImageView("https://thispersondoesnotexist.com/image");
+		picSearImgView.setImage(temp.getImage());
 		
 		mainPane.getChildren().clear();
     	mainPane.getChildren().add(found);
@@ -225,7 +227,7 @@ public class MainMenuController {
     
     @FXML
     void genData(ActionEvent event) {
-
+    	
     }
     
     @FXML
