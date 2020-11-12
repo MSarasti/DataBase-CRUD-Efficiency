@@ -1,0 +1,44 @@
+United States,321234000,32.700
+Brazil,204519000,20.820
+Mexico,121006000,12.320
+Colombia,48218000,4.910
+Argentina,43132000,4.390
+Canada,35819000,3.650
+Peru,33050325,3.170
+Venezuela,30620000,3.120
+Chile,18006000,1.830
+Ecuador,16279000,1.660
+Guatemala,16176000,1.650
+Cuba,11252000,1.150
+Bolivia,11005000,1.070
+Haiti,10994000,1.120
+Dominican Republic,10822000,1.020
+Honduras,8950000,0.910
+Paraguay,7003000,0.710
+Nicaragua,6514000,0.660
+El Salvador,6460000,0.660
+Costa Rica,4851000,0.490
+Panama,3764000,0.380
+Puerto Rico,3508000,0.360
+Uruguay,3310000,0.340
+Jamaica,2729000,0.280
+Trinidad and Tobago,1357000,0.140
+Guyana,747000,0.080
+Suriname,560000,0.060
+Guadeloupe,405000,0.040
+Martinique,383000,0.040
+Bahamas,379000,0.040
+Belize,369000,0.040
+Barbados,283000,0.030
+French Guiana,262000,0.030
+Saint Lucia,172000,0.020
+Curacao,157000,0.020
+Aruba,110000,0.010
+Saint Vincent and the Grenadines,110000,0.010
+United States Virgin Islands,105000,0.010
+Grenada,104000,0.010
+Antigua and Barbuda,89000,0.010
+Dominica,71000,0.010
+Bermuda,65000,0.010
+Cayman Islands,59000,0.010
+Greenland,56000,0.010

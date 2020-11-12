@@ -1,12 +1,15 @@
 package structures;
 
+import java.io.Serializable;
+
 /**
  * AVL Tree node
  * @author Miguel Sarasti
  * @param <K>
  * @param <V>
  */
-public class AVLNode<K extends Comparable<K>, V> {
+public class AVLNode<K extends Comparable<K>, V> implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int height;
 	private K key;
 	private V value;

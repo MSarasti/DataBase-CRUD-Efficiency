@@ -1,8 +1,5 @@
 package ui;
-	
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -13,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * @version November 7th 2020
+ * @version November 12th 2020
  */
 public class Main extends Application {
 
@@ -30,7 +27,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("blankPane.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainMenuPane.fxml"));
 			
 			fxmlLoader.setController(mainMenu);
 			
@@ -45,13 +42,7 @@ public class Main extends Application {
 				
 				@Override
 				public void handle(WindowEvent arg0) {
-					// TODO Auto-generated method stub
-				  	try {
-						//mainMenu.saveData();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					mainMenu.saveData();
 				}
 			});
 		} catch(Exception e) {

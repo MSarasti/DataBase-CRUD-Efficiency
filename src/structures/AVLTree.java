@@ -1,12 +1,16 @@
 package structures;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * AVL Tree data structure
  * @author Miguel Sarasti
  * @param <K>
  * @param <V>
  */
-public class AVLTree<K extends Comparable<K>, V> implements AVLInterface<K,V>{
+public class AVLTree<K extends Comparable<K>, V> implements AVLInterface<K,V>, Serializable{
+	private static final long serialVersionUID = 1L;
 	private AVLNode<K,V> root;
 	
 	/**
@@ -226,4 +230,19 @@ public class AVLTree<K extends Comparable<K>, V> implements AVLInterface<K,V>{
             preOrder(node.getRight()); 
         } 
     }
+    
+    public ArrayList<V> inOrder() {
+		ArrayList<V> c = new ArrayList<V>();
+		return inOrder(root, c); 
+	}
+    
+	private ArrayList<V> inOrder(AVLNode<K,V> current, ArrayList<V> a) {
+		if (current != null) { 
+			inOrder(current.getLeft(), a); 
+			a.add(current.getValue());
+			inOrder(current.getRight(), a); 
+		}
+		return a;
+	}
+
 }

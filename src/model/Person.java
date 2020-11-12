@@ -1,13 +1,10 @@
 package model;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.*;
 import java.time.LocalDate;
-import javax.imageio.ImageIO;
 
 public class Person implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String FirstName;
 	private String LastName;
@@ -15,7 +12,6 @@ public class Person implements Serializable{
 	private LocalDate birthDate;
 	private double height;
 	private String nationality;
-	private String photo;
 	
 	public Person(String firstName, String lastName, String gender, LocalDate birthDate, double height, String nationality) {
 		FirstName = firstName;
@@ -24,7 +20,6 @@ public class Person implements Serializable{
 		this.birthDate = birthDate;
 		this.height = height;
 		this.nationality = nationality;
-		photo = "https://thispersondoesnotexist.com/";
 	}
 
 	/**
@@ -124,13 +119,4 @@ public class Person implements Serializable{
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-
-	/**
-	 * @return the photo
-	 * @throws Exception 
-	 */
-	public BufferedImage getPhoto() throws Exception {
-		return ImageIO.read(new URL(photo));
-	}
-	
 }
