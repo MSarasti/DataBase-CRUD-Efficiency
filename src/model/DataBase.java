@@ -101,7 +101,7 @@ public class DataBase implements Serializable{
 	}
 	
 	public double genHeight() {
-		return Double.valueOf((Math.random() * (2.1 - 0.5)) + 0.5);
+		return Double.valueOf(String.format("%.2f", (Math.random() * (2.1 - 0.5)) + 0.5));
 	}
 	
 	public LocalDate genBirth() {

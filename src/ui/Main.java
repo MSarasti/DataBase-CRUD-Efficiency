@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * @version November 12th 2020
+ * @version November 14th 2020
  */
 public class Main extends Application {
 
