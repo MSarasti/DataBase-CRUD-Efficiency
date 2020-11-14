@@ -213,11 +213,16 @@ public class MainMenuController {
     	}
     	if(temp!=null) {
 	    	codeLabel.setText(temp.getCode());
+	    	fNameSearTxtField.setEditable(true);
 	    	fNameSearTxtField.setText(temp.getFirstName());
+	    	lNameSearTxtField.setEditable(true);
 	    	lNameSearTxtField.setText(temp.getLastName());
 	    	modGenderChoiceBox.setValue(temp.getGender());
+	    	birthSearDatPick.setEditable(true);
 	    	birthSearDatPick.setValue(temp.getBirthDate());
+	    	heigSearTxtField.setEditable(true);
 	    	heigSearTxtField.setText(temp.getHeight()+"");
+	    	natSearTxtField.setEditable(true);
 	    	natSearTxtField.setText(temp.getNationality());
     	}
     }
@@ -268,22 +273,23 @@ public class MainMenuController {
 				scrollPane.setContent(null);
 				foundPerson.setText(null);
 				try {
-					if((int)newValue==0) {
+					int nValue = (int)newValue;
+					if(nValue==0) {
 						trie = new Trie();
 						for (Person person : base.getPersonsByFirstName()) {
 							trie.insert(person.getFirstName());
 						}
-					}else if((int)newValue==1) {
+					}else if(nValue==1) {
 						trie = new Trie();
 						for (Person person : base.getPersonsByLastName()) {
 							trie.insert(person.getLastName());
 						}
-					}else if((int)newValue==2) {
+					}else if(nValue==2) {
 						trie = new Trie();
 						for (Person person : base.getPersonsByFullName()) {
 							trie.insert(person.getFirstName()+" "+person.getLastName());
 						}
-					}else if((int)newValue==3) {
+					}else {
 						trie = new Trie();
 						for (Person person : base.getPersonsByCode()) {
 							trie.insert(person.getCode());
@@ -303,56 +309,32 @@ public class MainMenuController {
 					gridPane.getChildren().clear();
 					scrollPane.setContent(gridPane);
 					scrollPane.setVisible(false);
-				} else {
+				}else {
 					ArrayList<String> data = trie.getEveryWord(entry);
 					gridPane.getChildren().clear();
 					scrollPane.setContent(gridPane);
-					foundPerson.setText("("+data.size()+") results");
-				
-					if(data.size()<=100) {
-						for (int i = 0; i < data.size(); i++) {
-							Label label = new Label(data.get(i));
-							gridPane.add(label, 1, i);
-							if(data.size()<=20) {
-								Button edit = new Button("EDIT");
-								gridPane.add(edit, 2, i);
-								edit.setOnAction(new EventHandler<ActionEvent>() {
-									@Override
-									public void handle(ActionEvent arg0) {
-										searTxtField.setText(null);
-										gridPane.getChildren().clear();
-										scrollPane.setContent(gridPane);
-										foundPerson.setText(null);
-										tabPane.getSelectionModel().select(personTab);
-										personTab.setDisable(false);
-										searchPerson(label.getText());
-									}
-								});
-							}
-							scrollPane.setContent(gridPane);
+					foundPerson.setText("("+data.size()+") matches");
+					int minSize = Math.min(data.size(), 99);
+					for (int i = 0; i < minSize; i++) {
+						Label label = new Label(data.get(i));
+						gridPane.add(label, 1, i);
+						if(data.size()<=20) {
+							Button edit = new Button("EDIT");
+							gridPane.add(edit, 2, i);
+							edit.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent arg0) {
+									searTxtField.setText(null);
+									gridPane.getChildren().clear();
+									scrollPane.setContent(gridPane);
+									foundPerson.setText(null);
+									tabPane.getSelectionModel().select(personTab);
+									personTab.setDisable(false);
+									searchPerson(label.getText());
+								}
+							});
 						}
-					}else {
-						for (int i = 0; i < 99; i++) {
-							Label label = new Label(data.get(i));
-							gridPane.add(label, 1, i);
-							if(data.size()<=20) {
-								Button edit = new Button("EDIT");
-								gridPane.add(edit, 2, i);
-								edit.setOnAction(new EventHandler<ActionEvent>() {
-									@Override
-									public void handle(ActionEvent arg0) {
-										searTxtField.setText(null);
-										gridPane.getChildren().clear();
-										scrollPane.setContent(gridPane);
-										foundPerson.setText(null);
-										tabPane.getSelectionModel().select(personTab);
-										personTab.setDisable(false);
-										searchPerson(label.getText());
-									}
-								});
-							}
-							scrollPane.setContent(gridPane);
-						}
+						scrollPane.setContent(gridPane);
 					}
 				}
 			}
